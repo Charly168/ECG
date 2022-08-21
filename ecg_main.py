@@ -45,6 +45,10 @@ plt.plot(t,ecg)
 
 for i in ecgPeak_find:
     plt.plot(t[i],ecg[i],"x")
+    
+plt.xlabel('Time [s]')
+plt.ylabel('Ecg [Implitude]')
+plt.title('peaks of ECG')
 
 
 
