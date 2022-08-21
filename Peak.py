@@ -20,7 +20,7 @@ class Peak(object):
         self.thresholdFaktor = thresholdFaktor
         self.Maximun = 0
         self.threashold = thresholdFaktor * self.Maximun 
-        self.deadZone = deadZone
+        # self.deadZone = deadZone
         self.timeSimple = timeSimple
         
     def findPeak(self,lstg):

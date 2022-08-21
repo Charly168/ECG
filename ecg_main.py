@@ -34,7 +34,7 @@ ecg = list(ecg_filter.lowpass(ecg,100, 1000))
 # plt.plot(t, ecg)
 
 timeSimple = 850 
-deadZone = 4 #为了最大值peak采样不重复，设置在maxPeak左/右的4个采样点为“死区”
+# deadZone = 4 #为了最大值peak采样不重复，设置在maxPeak左/右的4个采样点为“死区”
 thresholdFaktor = 0.7
 Maximun = 0
 threashold = thresholdFaktor * Maximun 
