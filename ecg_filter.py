@@ -4,30 +4,31 @@ Created on Thu Aug 18 07:20:48 2022
 
 @author: HP
 """
-
-import numpy as np
 import scipy.signal as ss
 
-def highpass(data,fs,samperate):
-    
-    wn = 2*fs/samperate # 根据奈奎斯定理，且wn的取值范围0~1
+def highpass(data,fs,samplerate):
+    """
+    samplerate是采样频率，根据奈奎斯定理，最大的频率则为500Hz，wn的取值范围是0~1
+    fs是截止频率，那么wn的计算方式则是fs/(0.5*samplerate)
+    """
+    wn = 2*fs/samplerate 
     b,a = ss.butter(4, wn, 'hp', analog = False)
     data_filt = ss.filtfilt(b,a,data)
     
     return data_filt
 
-def lowpass(data,fs,samperate):
+def lowpass(data,fs,samplerate):
     
-    wn = 2*fs/samperate
+    wn = 2*fs/samplerate
     b,a = ss.butter(4, wn, 'low', analog = False)
     data_filt = ss.filtfilt(b,a,data)
     
     return data_filt
 
-def bandstop(data,fs_vor,fs_nach,samperate):
+def bandstop(data,fs_vor,fs_nach,samplerate):
     
-    wn_vor =  2*fs_vor/samperate  
-    wn_nach =  2*fs_nach/samperate 
+    wn_vor =  2*fs_vor/samplerate  
+    wn_nach =  2*fs_nach/samplerate 
     b,a = ss.butter(4, [wn_vor, wn_nach], 'low', analog = False)
     data_filt = ss.filtfilt(b,a,data)
     

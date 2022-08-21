@@ -7,6 +7,7 @@ Created on Thu Aug 18 07:41:45 2022
 import matplotlib.pyplot as plt
 import data_reading as dr
 import Peak
+import ecg_filter
 
 filepath = 'rec-2022-07-12--16-43-31.mat'
 df = dr.read(filepath)
@@ -18,9 +19,21 @@ df = dr.read(filepath)
 t = list(df.loc[:,'t'])
 ecg = list(df.loc[:,'ecg'])
 
+"""
+在这个实验里，我提供的数据是我们当时在在实验室里测量得的数据，实在是因为我们的analog滤波器太完美了
+所以得出来数据很干净，同时也没有工频信号50Hz，因为我们的USB-Isolator很完美的屏蔽了它
+一般的正常流程都是高通-低通-带阻（或者Notchfilter）
+"""
+ecg = list(ecg_filter.highpass(ecg,0.3, 1000))
+ecg = list(ecg_filter.lowpass(ecg,100, 1000))
+
+# ecg = ecg_filter.bandstop(ecg,49,51, 1000)
+
+
+
 # plt.plot(t, ecg)
 
-timeSimple = 850 # 最大心率为250bmp，对应频率为4hz，大概是0.2s，采样频率为1000，因此相应采样点数为200
+timeSimple = 850 
 deadZone = 4 #为了最大值peak采样不重复，设置在maxPeak左/右的4个采样点为“死区”
 thresholdFaktor = 0.7
 Maximun = 0

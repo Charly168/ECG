@@ -14,6 +14,7 @@ Created on Sun Aug 21 12:29:59 2022
 class Peak(object):
     
     def __init__(self,thresholdFaktor = 0.7,deadZone = 4,timeSimple = 200):
+        # 最大心率为250bmp，对应频率为4hz，大概是0.2s，采样频率为1000，因此相应采样点数为200
         self.num = 0 # 用于储存循环次数，每循环一次代表数组不同的片段
         self.lstPeak = [] # 记录的是Peak对应在数组中的index
         self.thresholdFaktor = thresholdFaktor
