@@ -8,7 +8,7 @@ import scipy.signal as ss
 
 def highpass(data,fs,samplerate):
     """
-    samplerate是采样频率，根据奈奎斯定理，最大的频率则为500Hz，wn的取值范围是0~1
+    samplerate是采样频率，根据奈奎斯定理，最大的频率则为0.5*samplerate Hz，wn的取值范围是0~1
     fs是截止频率，那么wn的计算方式则是fs/(0.5*samplerate)
     """
     wn = 2*fs/samplerate 
